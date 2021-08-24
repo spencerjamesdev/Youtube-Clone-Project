@@ -35,7 +35,7 @@ class Detail(APIView):
         serializer = CommentSerializer(comments)
         return Response(serializer.data)
 
-    def put(self,request, pk):
+    def put(self, request, pk):
         comments = self.get_comments(pk=pk)
         serializer = CommentSerializer(comments, data=request.data)
         if  serializer.is_valid():    
@@ -43,7 +43,7 @@ class Detail(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self,request,pk):
+    def delete(self, request, pk):
             comments = self.get_comments(pk=pk)
             comments.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
